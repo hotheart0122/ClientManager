@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ClientManagerLibrary
 {
-    public class Class1
+    class CaseStatus
     {
+        public int CaseStatusId { get; set; }
+        public string Status { get; set; }
     }
 }
