@@ -2,34 +2,44 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="jumbotron container">
+    <h1>Virtual Legal Assistant</h1>
+    
+    <p class="col-md-10">
+        VLA is a web app helping you manage your clients and cass.
+        You can add, edit, delete, search your clients and cases.
+    </p>
+    <img src="~/Content/images/woman-304811_640.png" class="img-responsive col-md-2">
+    @*<p class="lead">VLA is a web app helping you manage your clients and cases.</p>
+    <p class="lead">You can add, edit, delete, search your clients and cases.</p>*@
+    @*<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
     @*<p>ClientId: @ViewBag.ClientId</p>
     <p>Secret: @ViewBag.Secret</p>*@ 
     @*<p>appId: @ViewBag.appId</p>
     <p>appSecret: @ViewBag.appSecret</p>*@
+    
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
+        <h2>Manage Clients</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            You can add new clients, and add new cases to existing clients. You can also see or edit 
+            your clients information, edit or delete the clients. You can leave notes regarding the cases.
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        @*<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>*@
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>Manage Cases</h2>
+        <p>You can see and edit info about your cases. You can update status of your cases. Please remember that if you want to create a new case,
+           go to 'Manage Clients' to create a client first, then add a new case. You can add a new case to 
+           existing clients in 'Manage Clients'.</p>
+        @*<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>*@
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>Edit Status Selection</h2>
+        <p>You can add edit or delete status selection menu so each time there is any change in the status, 
+        you don't have to type in. You can just choose from a dropdown menu.</p>
+        @*<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>*@
     </div>
 </div>

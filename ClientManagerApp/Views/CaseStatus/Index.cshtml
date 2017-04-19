@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ClientManagerLibrary.CaseStatus>
+
+@{
+    ViewBag.Title = "Status List";
+}
+
+<h2>Status List</h2>
+
+<p>
+    @Html.ActionLink("Create Status Selection", "Create", "CaseStatus")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CaseStatusId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CaseStatusId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CaseStatusId })
+        </td>
+    </tr>
+}
+
+</table>

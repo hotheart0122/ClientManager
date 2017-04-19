@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ClientManagerLibrary.ClientViewModel>
+
+@{
+    ViewBag.Title = "Client List";
+}
+
+<h2>Client List</h2>
+<p>To see each client's cases, click the number below "Number of Cases"</p>
+
+<p>
+    @Html.ActionLink("Add New Client", "Create")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.ClientId)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.FName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bday)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumCases)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.ClientId)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.FName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bday)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sex)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.NumCases)*@
+            @*to make a link for "Number of Cases, comment out above line and added line below. 'ToString' is the key.*@
+            @Html.ActionLink(Html.DisplayFor(modelItem => item.NumCases).ToString(), "GetCaseByClientId", "Case", new { clientId = item.ClientId }, null)
+        </td>
+        <td>
+           
+            @Html.ActionLink("Add New Case", "Create","Case", new { clientId = item.ClientId }, null)
+            @*Create is action name, Case is controller. we need null for Html Attributes to prevent error.*@
+            @Html.ActionLink("Edit", "Edit", new {  id=item.ClientId }) 
+            @Html.ActionLink("Details", "Details", new { id=item.ClientId }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.ClientId })
+        </td>
+    </tr>
+}
+
+</table>
