@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace ClientManagerLibrary
 {
-    public class ClientCaseRepositoryinMemory
+    public class ClientCaseRepositoryinMemory : IClientCaseRepository
     {
         private static List<Client> _clientList = new List<Client>();
         //private List<ClientViewModel> _clientViewList = new List<ClientViewModel>();
@@ -113,10 +113,10 @@ namespace ClientManagerLibrary
 
         }
         //[CaseStatus was returing null], so added this new method.
-        public CaseStatus GetStatusByName(string statusName)
-        {
-            return _statusList.Find(status => status.Status.ToLower() == statusName.ToLower());
-        }
+        //public CaseStatus GetStatusByName(string statusName)
+        //{
+        //    return _statusList.Find(status => status.Status.ToLower() == statusName.ToLower());
+        //}
 
         public void AddStatus(CaseStatus newStatus)
         {

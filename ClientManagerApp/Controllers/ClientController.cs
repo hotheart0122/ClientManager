@@ -8,15 +8,20 @@ using System.Web.Mvc;
 namespace ClientManagerApp.Controllers
 {
     public class ClientController : Controller
-    {
-        private static ClientCaseRepositoryinMemory _clientRepo;
+    {//add these changes to swap to EFRepo
+        private static IClientCaseRepository _clientRepo;
 
         public ClientController()
         {
             if (_clientRepo == null)
             {
-                _clientRepo = new ClientCaseRepositoryinMemory();
+                _clientRepo = new ClientCaseRepositoryEF();
             }
+        }
+
+        public ClientController(IClientCaseRepository newRepo)
+        {
+            _clientRepo = newRepo;
         }
             
         // GET: Client
@@ -94,7 +99,7 @@ namespace ClientManagerApp.Controllers
                 _clientRepo.UpdateClient(updateClient);
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
                 ViewBag.sexList = new SelectList(_clientRepo.GetSex());
                 return View();

@@ -8,15 +8,20 @@ using System.Web.Mvc;
 namespace ClientManagerApp.Controllers
 {
     public class CaseController : Controller
-    {
-        private static ClientCaseRepositoryinMemory _caseRepo;
+    {//add these changes to swap to EFRepo;
+        private static IClientCaseRepository _caseRepo;
 
         public CaseController()
         {
             if (_caseRepo == null)
             {
-                _caseRepo = new ClientCaseRepositoryinMemory();
+                _caseRepo = new ClientCaseRepositoryEF();
             }
+        }
+
+        public CaseController(IClientCaseRepository newRepo)
+        {
+            _caseRepo = newRepo;
         }
 
         // GET: Case
@@ -58,21 +63,25 @@ namespace ClientManagerApp.Controllers
             try
             {
                 // TODO: Add insert logic here
-                //add this after getting an error
-                var client = _caseRepo.GetClientById(newCase.ClientId);
-                newCase.Client = client;
+                //add this after getting an error. 1. commented them out because Create Case was having an error
+                //var client = _caseRepo.GetClientById(newCase.ClientId);
+                //newCase.Client = client;
                 //compare to ClientController has only this: _clientRepo.AddClient(newClient);
 
                 //[CaseStatus was returing null], so added these two lines.
-                newCase.CaseStatus = _caseRepo.GetStatusById(newCase.CaseStatusId); //need to get CaseStatusId
-                //because that is the one passed in
+
+                //newCase.CaseStatus = _caseRepo.GetStatusById(newCase.CaseStatusId); //need to get CaseStatusId
+                                  //because that is the one passed in
+                                  //finally delete this because everytime I ceate a new case, a new case status was being created.
+                
+                
                 //newCase.CaseStatusId = newCase.CaseStatus.CaseStatusId; no need any more because 
                 //it already has CaseStatusId
 
                 _caseRepo.AddCase(newCase);
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
                 ViewBag.statusList = new SelectList(_caseRepo.GetStatuses(), "CaseStatusId", "Status");
                 // CaseStatusId: DataValue, Status is DataText
@@ -100,12 +109,14 @@ namespace ClientManagerApp.Controllers
             {
                 // TODO: Add update logic here
 
-                var client = _caseRepo.GetClientById(updateCase.ClientId); //having an error,  
-                updateCase.Client = client; //fixed it by adding these two lines.
+                //var client = _caseRepo.GetClientById(updateCase.ClientId); //1 .having an error,  
+                //updateCase.Client = client; //fixed it by adding these two lines. 2.Then later Edit was not working,
+                //so I commented out these two lines then it is working.
 
                 //[CaseStatus was returing null], so added these two lines.
-                updateCase.CaseStatus = _caseRepo.GetStatusById(updateCase.CaseStatusId); //need to get CaseStatusId
-                //because that is the one passed in
+                //updateCase.CaseStatus = _caseRepo.GetStatusById(updateCase.CaseStatusId); 
+                //need to get CaseStatusId because that is the one passed in. Finally deleted because
+                //everytime I edit cases, a new case status was being created.
 
                 //updateCase.CaseStatusId = updateCase.CaseStatus.CaseStatusId; do not need it any more
                 //

@@ -9,15 +9,31 @@ namespace ClientManagerApp.Controllers
 {
     public class CaseStatusController : Controller
     {
-        private static ClientCaseRepositoryinMemory _statusRepo;
+        private static IClientCaseRepository _statusRepo;
+        //private static ClientCaseRepositoryinMemory _statusRepo;    to swap to EFRepo make this change
+
+        //public CaseStatusController()
+        //{
+        //    if (_statusRepo == null)
+        //    {
+        //        _statusRepo = new ClientCaseRepositoryinMemory();
+        //    }
+        //}
 
         public CaseStatusController()
         {
             if (_statusRepo == null)
             {
-                _statusRepo = new ClientCaseRepositoryinMemory();
+                _statusRepo = new ClientCaseRepositoryEF();
             }
+        } //make this changes to swap to EFRepo
+
+        //add this constructor to swap to EFRepo
+        public CaseStatusController(IClientCaseRepository newRepo)
+        {
+            _statusRepo = newRepo;
         }
+
 
         // GET: CaseStatus
         public ActionResult Index()

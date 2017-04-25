@@ -13,7 +13,7 @@
     @Html.HiddenFor(model => model.CaseStatusId)//Status was not working, add this to fix
 
     <div class="form-horizontal">
-        <h4>Add New Status Selection</h4>
+        @*<h4>Add New Status Selection</h4>*@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

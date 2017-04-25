@@ -89,9 +89,11 @@
     <Compile Include="CaseStatus.cs" />
     <Compile Include="CaseViewModel.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="ClientCaseRepositoryEF.cs" />
     <Compile Include="ClientCaseRepositoryinMemory.cs" />
     <Compile Include="ClientModel.cs" />
     <Compile Include="ClientViewModel.cs" />
+    <Compile Include="IClientCaseRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
