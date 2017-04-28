@@ -1,4 +1,4 @@
-﻿@model ClientManagerLibrary.CaseViewModel
+﻿@model ClientManagerApp.Models.ViewModels.CaseCreateViewModel
 
 @{
     ViewBag.Title = "Add New Case";
@@ -60,10 +60,20 @@
             @Html.LabelFor(model => model.CaseStatus, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @*@Html.EditorFor(model => model.CaseStatus, new { htmlAttributes = new { @class = "form-control" } })*@
-                @Html.DropDownList("CaseStatusId", (SelectList)ViewBag.statusList, new  { @class = "form-control", id = "Status" })
+
+                @*@Html.DropDownList("CaseStatusId", (SelectList)ViewBag.statusList, new  { @class = "form-control", id = "Status" })*@
                 @*compare this with below- CaseStausId is the one passed in*@
-                @*@Html.DropDownList("Status", (SelectList)ViewBag.statusList, new { @class = "form-control", id = "Status" })*@
-                @Html.ValidationMessageFor(model => model.CaseStatus, "", new { @class = "text-danger" })
+                @*@Html.DropDownList("Status", (SelectList)ViewBag.statusList, new { @class = "form-control", id = "Status" }) this one not working*@
+                
+                @Html.DropDownListFor(m => m.CaseStatusId, Model.CaseStatusSelectList, "- Please select your status -", new { @class = "form-control" })
+                
+                @*@Html.DropDownList("statusList", null, "- Please select your status -", new { @class = "form-control" })*@
+                @*below line was not working, above line makes "New" default status*@
+                @*@Html.DropDownListFor(m => m.CaseStatusId, (SelectList)ViewBag.statusList, "- Please select your status -", new { @class = "form-control" })*@
+                @*finally, to make "New" default status when creating a new case, add '25' in Create in Case Controller, and add above line*@
+                
+
+                @Html.ValidationMessageFor(model => model.CaseStatusId, "", new { @class = "text-danger" })
             </div>
         </div>
 

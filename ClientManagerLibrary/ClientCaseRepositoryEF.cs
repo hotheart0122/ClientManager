@@ -232,20 +232,7 @@ namespace ClientManagerLibrary
                 //client.Address = updateClient.Address; //1. we can add each property one by one like this, or we can do 2 below.
                 //client.Bday = updateClient.Bday; //1. we can add each property one by one like this, or we can do 2 below.
 
-                //foreach (var item in client)
-                //{
-                //    var clientInfo = db.Entry(client);
-                //clientInfo.State = EntityState.Modified;
-                    //if (client.CaseId == 0)   
-                    //{
-                    //    clientInfo.State = EntityState.Added;
-                    //}
-                    //else
-                    //{
-                    //    clientInfo.State = System.Data.Entity.EntityState.Modified;
-                    //}
-                //}
-
+                
                 db.Clients.Attach(updateClient); //2. This seems easier thant 1. above.
                 var entry = db.Entry(updateClient);
                 entry.State = System.Data.Entity.EntityState.Modified;

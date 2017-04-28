@@ -23,7 +23,7 @@ namespace ClientManagerApp.Controllers
         {
             _clientRepo = newRepo;
         }
-            
+
         // GET: Client
         public ActionResult Index()
         {   // having an error when it's running
@@ -31,15 +31,17 @@ namespace ClientManagerApp.Controllers
             // on each item, create a ViewModel and add that to 
             // a new List<ClientViewModel> then pass THAT list
             // to the view
+
             List<ClientViewModel> clientVmList = new List<ClientViewModel>();
             foreach (var client in _clientRepo.GetClients())
             {
                 clientVmList.Add(new ClientViewModel(client));
             }
-            //ViewBag.sexList = new SelectList(_clientRepo.GetSex());
+            
             return View(clientVmList);
         }
 
+        
         // GET: Client/Details/5
         public ActionResult Details(int id)
         {

@@ -23,6 +23,7 @@ namespace ClientManagerLibrary
         } //
 
         [Key]
+        [Display(Name ="Status Id")]
         public int CaseStatusId { get; set; }
 
         [StringLength(50)]

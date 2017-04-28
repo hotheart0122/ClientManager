@@ -1,4 +1,5 @@
-﻿using ClientManagerLibrary;
+﻿using ClientManagerApp.Models.ViewModels;
+using ClientManagerLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,10 +50,19 @@ namespace ClientManagerApp.Controllers
         public ActionResult Create(int clientId)
         { // to add new case to existing clients. we need to get the clientId, FName and LName from _caseRepo.
             var client = _caseRepo.GetClientById(clientId);
-            CaseViewModel newCase = new CaseViewModel {  FName=client.FName, LName=client.LName, ClientId = client.ClientId };
+            CaseCreateViewModel newCase = new CaseCreateViewModel {  FName=client.FName, LName=client.LName, ClientId = client.ClientId };
 
-            //to make a dropdown menu in the create and edit view
-            ViewBag.statusList = new SelectList(_caseRepo.GetStatuses(), "CaseStatusId", "Status");
+            //to make a dropdown menu in the create and edit view, then make "New" default status.
+            var statuses = _caseRepo.GetStatuses().Select(c => new SelectListItem { Value = c.CaseStatusId.ToString(), Text = c.Status });
+            var list = new SelectList(statuses, "Value", "Text", "25");
+
+            //var selectedItem = list.FirstOrDefault(s => s.Value == "25");
+            //selectedItem.Selected = true;
+
+            //ViewBag.statusList = list;
+            newCase.CaseStatusSelectList = list;
+
+            //and made changed to Create View.
             return View(newCase);
         }
 
@@ -96,7 +106,11 @@ namespace ClientManagerApp.Controllers
             var targetCase = _caseRepo.GetCaseById(id);
             CaseViewModel caseVm = new CaseViewModel(targetCase);
 
-            ViewBag.statusList = new SelectList(_caseRepo.GetStatuses(), "CaseStatusId", "Status");
+            var selectedStatus = targetCase.CaseStatusId;
+            ViewBag.statusList = new SelectList(_caseRepo.GetStatuses(), "CaseStatusId", "Status", selectedStatus);
+
+            //ViewBag.statusList = new SelectList(_caseRepo.GetStatuses(), "CaseStatusId", "Status");
+            //ViewBag.statusList = new SelectList(_caseRepo.GetStatuses(), "CaseStatusId", "Status", selectedValue);
             //ViewBag.statusList = new SelectList(_caseRepo.GetStatuses());
             return View(caseVm);
         }
@@ -124,10 +138,10 @@ namespace ClientManagerApp.Controllers
                 _caseRepo.UpdateCase(updateCase);
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
-                ViewBag.statusList = new SelectList(_caseRepo.GetStatuses(), "CaseStatusId", "Status");
-                //ViewBag.statusList = new SelectList(_caseRepo.GetStatuses());
+                //ViewBag.statusList = new SelectList(_caseRepo.GetStatuses(), "CaseStatusId", "Status");
+                ViewBag.statusList = new SelectList(_caseRepo.GetStatuses());
                 return View();
             }
         }

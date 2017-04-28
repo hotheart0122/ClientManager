@@ -29,14 +29,14 @@ namespace ClientManagerLibrary
                 CaseStatus = findCase.CaseStatus.Status; //[CaseStatus was returing null], so added this line.
 
                 //Since we don't have Status yet, added this New as default
-                //if (findCase.CaseStatus != null)
-                //{
-                //    CaseStatus = findCase.CaseStatus.Status;
-                //}
-                //else
-                //{
-                //    CaseStatus = "New";
-                //}
+                if (findCase.CaseStatus != null)
+                {
+                    CaseStatus = findCase.CaseStatus.Status;
+                }
+                else
+                {
+                    CaseStatus = "New";
+                }
 
                 //to this part
 
@@ -67,8 +67,10 @@ namespace ClientManagerLibrary
         public DateTime? OpenDate { get; set; }
 
         [System.ComponentModel.DisplayName("Status")]
+
         public string CaseStatus { get; set; }
-        //public int CaseStatusId { get; set; }
+        [Required(ErrorMessage = "The status field is required")]
+        public int CaseStatusId { get; set; }
 
         public string Note { get; set; }
 
