@@ -69,7 +69,7 @@
                
                 @*@Html.DropDownListFor(m => m.CaseStatus, new SelectList(Model.CaseStatuses, "CaseStatusId", "Status"),
                  "- Please select your status -")*@
-                @Html.ValidationMessageFor(model => model.CaseStatus, "Please select the status again", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.CaseStatus, "", new { @class = "text-danger" })
             </div>
         </div>
 

@@ -43,6 +43,7 @@ namespace ClientManagerLibrary
                 Note = findCase.Note;
                 ClosedDate = findCase.ClosedDate;
                 ClientId = findCase.ClientId;
+                CaseStatusId = findCase.CaseStatusId; //added this to preselected status default, and it solved.
             }
             catch (Exception ex)
             {

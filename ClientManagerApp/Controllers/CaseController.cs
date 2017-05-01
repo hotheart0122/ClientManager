@@ -2,6 +2,7 @@
 using ClientManagerLibrary;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -61,6 +62,12 @@ namespace ClientManagerApp.Controllers
 
             //ViewBag.statusList = list;
             newCase.CaseStatusSelectList = list;
+            int defaultCaseStatusId;
+            if (!int.TryParse(ConfigurationManager.AppSettings["defaultCaseStatusId"], out defaultCaseStatusId))
+            {
+
+            }
+            newCase.CaseStatusId = defaultCaseStatusId;  //added this to make "new" default and it solved.
 
             //and made changed to Create View.
             return View(newCase);
